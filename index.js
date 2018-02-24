@@ -2,12 +2,12 @@
  * @Author: Sameer Ahmed 
  * @Date: 2018-02-24 13:54:00
  * @Last Modified by: Sameer Ahmed
- * @Last Modified time: 2018-02-24 19:34:20
+ * @Last Modified time: 2018-02-25 01:03:33
  */
 
 import { Bigdecimal } from "bigdecimal"
 
-export const convertToUnit = ({amount = '', scale = 0, roundingMode = RoundingMode.DOWN}) = {
+export const convertToUnit = ({amount = '', scale = 0, roundingMode = RoundingMode.DOWN}) => {
     
         if (isNaN(amount)) {
             throw new Error('Should be a valid number')
@@ -41,7 +41,7 @@ export const convertToUnit = ({amount = '', scale = 0, roundingMode = RoundingMo
             unit = UNIT_ONE
         }
         
-        const bigDecimal = BigDecimal(number)
+        let bigDecimal = BigDecimal(number)
         bigDecimal = bigDecimal.divide(BigDecimal(divisor))
         bigDecimal = bigDecimal.setScale(scale, roundingMode)
         return `₹ ${bigDecimal}${unit}`
