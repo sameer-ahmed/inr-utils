@@ -1,0 +1,13 @@
+{
+  "name": "inr-utils",
+  "version": "1.0.0",
+  "description": "Inr Utils",
+  "main": "index.js",
+  "repository": "https://github.com/sameer-ahmed/inr-utils.git",
+  "author": "sameer-ahmed <me@sameerahmed.in>",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "bigdecimal": "^0.6.1"
+  }
+}
