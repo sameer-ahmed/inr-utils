@@ -1,6 +1,6 @@
 {
   "name": "inr-utils",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Inr Utils",
   "main": "index.js",
   "repository": "https://github.com/sameer-ahmed/inr-utils.git",
