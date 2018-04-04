@@ -1,9 +1,10 @@
-/*
- * @Author: Sameer Ahmed 
- * @Date: 2018-02-24 13:54:00
- * @Last Modified by: Sameer Ahmed
- * @Last Modified time: 2018-02-25 02:13:17
- */
+/**
+ * @author Sameer Ahmed
+ * @email me@sameerahmed.in
+ * @create date 2018-04-04 05:59:51
+ * @modify date 2018-04-04 06:00:17
+ * @desc [description]
+*/
 
 import { BigDecimal } from "bigdecimal"
 
@@ -17,45 +18,68 @@ export const RoundingMode = {
     ROUND_FLOOR: BigDecimal.ROUND_FLOOR,
 }
 
-export const convertToUnit = ({amount = '', scale, roundingMode = BigDecimal.ROUND_DOWN}) => {
-    
+export const UNITS = {
+    CARORE: {
+        key: 'CARORE',
+        title: 'Carore',
+        prefix: ' cr',
+    },
+    LAKH: {
+        key: 'LAKH',
+        title: 'Lakh',
+        prefix: ' lakh',
+    },
+    THOUSAND: {
+        key: 'THOUSAND',
+        title: 'Thousand',
+        prefix: ' thousand',
+    },
+    ONE: {
+        key: 'ONE',
+        title: 'none',
+        prefix: ' ',
+    }
+}
+
+export const ONE = 1
+export const ONE_THOUSAND = 1000 * ONE
+export const ONE_LAKH = 100 * ONE_THOUSAND
+export const ONE_CRORE = 100 * ONE_LAKH
+
+export const getUnitAndNumberMap = ({ amount = '', scale = 2, roundingMode = BigDecimal.ROUND_DOWN }) => {
     if (isNaN(amount)) {
         throw new Error('Should be a valid number')
     }
 
     const number = Number(amount)
 
-    const ONE = 1
-    const ONE_THOUSAND = 1000 * ONE
-    const ONE_LAKH = 100 * ONE_THOUSAND
-    const ONE_CRORE = 100 * ONE_LAKH
-
-    const UNIT_ONE = " "
-    const UNIT_CRORE = " cr"
-    const UNIT_LAKH = " lakh"
-    const UNIT_THOUSAND = " thousand"
-
     let divisor
-    let unit
+    let unitKey
     if (number >= ONE_CRORE) {
         divisor = ONE_CRORE
-        unit = UNIT_CRORE
+        unit = UNITS.CARORE
     } else if (number >= ONE_LAKH) {
         divisor = ONE_LAKH
-        unit = UNIT_LAKH
+        unit = UNITS.LAKH
     } else if (number >= ONE_THOUSAND) {
         divisor = ONE_THOUSAND
-        unit = UNIT_THOUSAND
+        unit = UNITS.THOUSAND
     } else {
         divisor = ONE
-        unit = UNIT_ONE
+        unit = UNITS.ONE
     }
-    
+
     let bigDecimal = BigDecimal(number)
     bigDecimal = bigDecimal.divide(BigDecimal(divisor))
 
     if (typeof scale !== 'undefined') {
         bigDecimal = bigDecimal.setScale(scale, roundingMode)
     }
-    return `₹ ${bigDecimal}${unit}`
+
+    return { number: Number(bigDecimal), unit }
+}
+
+export const convertToUnit = ({ amount = '', scale = 2, roundingMode = BigDecimal.ROUND_DOWN }) => {
+    const { number, unit } = getUnitAndNumberMap({ amount, scale, roundingMode })
+    return `₹ ${number}${unit.prefix}`
 }
