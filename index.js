@@ -1,10 +1,10 @@
-/**
- * @author Sameer Ahmed
- * @email me@sameerahmed.in
- * @create date 2018-04-04 05:59:51
- * @modify date 2018-04-04 06:00:17
- * @desc [description]
-*/
+/*
+ * @Author: Sameer Ahmed 
+ * @Date: 2018-04-04 05:59:51
+ * @Last Modified by: Sameer Ahmed
+ * @Last Modified time: 2018-04-11 12:14:28
+ * @Url https://github.com/sameer-ahmed/inr-utils.git
+ */
 
 import { BigDecimal } from "bigdecimal"
 
@@ -19,9 +19,9 @@ export const RoundingMode = {
 }
 
 export const UNITS = {
-    CARORE: {
-        key: 'CARORE',
-        title: 'Carore',
+    CRORE: {
+        key: 'CRORE',
+        title: 'Crore',
         prefix: ' cr',
     },
     LAKH: {
@@ -57,7 +57,7 @@ export const getUnitAndNumberMap = ({ amount = '', scale = 2, roundingMode = Big
     let unitKey
     if (number >= ONE_CRORE) {
         divisor = ONE_CRORE
-        unit = UNITS.CARORE
+        unit = UNITS.CRORE
     } else if (number >= ONE_LAKH) {
         divisor = ONE_LAKH
         unit = UNITS.LAKH
