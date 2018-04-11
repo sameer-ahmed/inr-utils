@@ -2,8 +2,8 @@
  * @Author: Sameer Ahmed 
  * @Date: 2018-04-04 05:59:51
  * @Last Modified by: Sameer Ahmed
- * @Last Modified time: 2018-04-11 12:14:28
- * @Url https://github.com/sameer-ahmed/inr-utils.git
+ * @Last Modified time: 2018-04-11 12:26:40
+ * @Url https://github.com/sameer-ahmed/inr-utils/tree/v1.1.2
  */
 
 import { BigDecimal } from "bigdecimal"
@@ -22,22 +22,22 @@ export const UNITS = {
     CRORE: {
         key: 'CRORE',
         title: 'Crore',
-        prefix: ' cr',
+        prefix: 'cr',
     },
     LAKH: {
         key: 'LAKH',
         title: 'Lakh',
-        prefix: ' lakh',
+        prefix: 'lakh',
     },
     THOUSAND: {
         key: 'THOUSAND',
         title: 'Thousand',
-        prefix: ' thousand',
+        prefix: 'thousand',
     },
     ONE: {
         key: 'ONE',
         title: 'none',
-        prefix: ' ',
+        prefix: '',
     }
 }
 
@@ -81,5 +81,5 @@ export const getUnitAndNumberMap = ({ amount = '', scale = 2, roundingMode = Big
 
 export const convertToUnit = ({ amount = '', scale = 2, roundingMode = BigDecimal.ROUND_DOWN }) => {
     const { number, unit } = getUnitAndNumberMap({ amount, scale, roundingMode })
-    return `₹ ${number}${unit.prefix}`
+    return `₹ ${number} ${unit.prefix}`
 }
