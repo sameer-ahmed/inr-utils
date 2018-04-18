@@ -1,9 +1,6 @@
 /*
  * @Author: Sameer Ahmed 
- * @Date: 2018-04-04 05:59:51
- * @Last Modified by: Sameer Ahmed
- * @Last Modified time: 2018-04-11 12:26:40
- * @Url https://github.com/sameer-ahmed/inr-utils/tree/v1.1.2
+ * @Url https://github.com/sameer-ahmed/inr-utils/tree/v1.1.3
  */
 
 import { BigDecimal } from "bigdecimal"
@@ -18,33 +15,37 @@ export const RoundingMode = {
     ROUND_FLOOR: BigDecimal.ROUND_FLOOR,
 }
 
+export const ONE = 1
+export const ONE_THOUSAND = 1000 * ONE
+export const ONE_LAKH = 100 * ONE_THOUSAND
+export const ONE_CRORE = 100 * ONE_LAKH
+
 export const UNITS = {
     CRORE: {
         key: 'CRORE',
         title: 'Crore',
         prefix: 'cr',
+        divisor: ONE_CRORE,
     },
     LAKH: {
         key: 'LAKH',
         title: 'Lakh',
         prefix: 'lakh',
+        divisor: ONE_LAKH,
     },
     THOUSAND: {
         key: 'THOUSAND',
         title: 'Thousand',
         prefix: 'thousand',
+        divisor: ONE_THOUSAND,
     },
     ONE: {
         key: 'ONE',
         title: 'none',
         prefix: '',
+        divisor: ONE,
     }
 }
-
-export const ONE = 1
-export const ONE_THOUSAND = 1000 * ONE
-export const ONE_LAKH = 100 * ONE_THOUSAND
-export const ONE_CRORE = 100 * ONE_LAKH
 
 export const getUnitAndNumberMap = ({ amount = '', scale = 2, roundingMode = BigDecimal.ROUND_DOWN }) => {
     if (isNaN(amount)) {
