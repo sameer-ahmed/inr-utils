@@ -47,7 +47,7 @@ export const UNITS = {
     }
 }
 
-export format = (amount) => {
+export const format = (amount) => {
     var x = amount.toString()
     var lastThree = x.substring(x.length-3)
     var otherNumbers = x.substring(0, x.length-3)
