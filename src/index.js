@@ -1,6 +1,6 @@
 /*
  * @Author: Sameer Ahmed 
- * @Url https://github.com/sameer-ahmed/inr-utils/tree/v1.1.3
+ * @Url https://github.com/sameer-ahmed/inr-utils
  */
 
 import { BigDecimal } from "bigdecimal"
@@ -56,6 +56,7 @@ export const getUnitAndNumberMap = ({ amount = '', scale = 2, roundingMode = Big
 
     let divisor
     let unitKey
+    let unit
     if (number >= ONE_CRORE) {
         divisor = ONE_CRORE
         unit = UNITS.CRORE
