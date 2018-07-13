@@ -47,16 +47,18 @@ export const UNITS = {
     }
 }
 
-export const format = (amount) => {
-    var x = amount.toString()
-    var lastThree = x.substring(x.length-3)
-    var otherNumbers = x.substring(0, x.length-3)
+var format = exports.format = function format(amount) {
+    var x = amount.toString();
+    var split = x.split('.')
+    x = split[0]
+    var lastThree = x.substring(x.length - 3);
+    var otherNumbers = x.substring(0, x.length - 3);
     if (otherNumbers !== '') {
-        lastThree = `,${lastThree}`
+        lastThree = ',' + lastThree;
     }
-    var res = `${otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",")}${lastThree}`
-    return res
-}
+    var res = '' + otherNumbers.replace(/\B(?=(\d{2})+(?!\d))/g, ",") + lastThree + (typeof split[1] === 'undefined' ? '' : ('.' + split[1])) ;
+    return res;
+};
 
 export const getUnitAndNumberMap = ({ amount = '', scale = 2, roundingMode = BigDecimal.ROUND_DOWN }) => {
     if (isNaN(amount)) {
