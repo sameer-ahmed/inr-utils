@@ -21,28 +21,28 @@ export const ONE_LAKH = 100 * ONE_THOUSAND
 export const ONE_CRORE = 100 * ONE_LAKH
 
 export const UNITS = {
-    CRORE: {
-        key: 'CRORE',
-        title: 'Crore',
-        prefix: 'cr',
-        divisor: ONE_CRORE,
-    },
-    LAKH: {
-        key: 'LAKH',
-        title: 'Lakh',
-        prefix: 'lakh',
-        divisor: ONE_LAKH,
-    },
     THOUSAND: {
         key: 'THOUSAND',
         title: 'Thousand',
-        prefix: 'thousand',
+        suffix: 'Thousand',
         divisor: ONE_THOUSAND,
+    },
+    LAKH: {
+        key: 'LAKH',
+        title: 'Lac',
+        suffix: 'Lac',
+        divisor: ONE_LAKH,
+    },
+    CRORE: {
+        key: 'CRORE',
+        title: 'Crore',
+        suffix: 'Cr',
+        divisor: ONE_CRORE,
     },
     ONE: {
         key: 'ONE',
         title: 'none',
-        prefix: '',
+        suffix: '',
         divisor: ONE,
     }
 }
@@ -96,5 +96,5 @@ export const getUnitAndNumberMap = ({ amount = '', scale = 2, roundingMode = Big
 
 export const convertToUnit = ({ amount = '', scale = 2, roundingMode = BigDecimal.ROUND_DOWN }) => {
     const { number, unit } = getUnitAndNumberMap({ amount, scale, roundingMode })
-    return `₹ ${number} ${unit.prefix}`
+    return `₹ ${number} ${unit.suffix}`
 }
