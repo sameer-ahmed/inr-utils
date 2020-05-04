@@ -87,7 +87,7 @@ export const getUnitAndNumberMap = ({ amount = '', scale = 2, roundingMode = Big
     let bigDecimal = BigDecimal(number)
     bigDecimal = bigDecimal.divide(BigDecimal(divisor))
 
-    if (typeof scale !== 'undefined') {
+    if (typeof scale !== 'undefined' && bigDecimal.setScale) {
         bigDecimal = bigDecimal.setScale(scale, roundingMode)
     }
 
